@@ -173,11 +173,65 @@
 
 
 
+// const express = require("express");
+// const app = express();
+// const cors = require("cors")
+
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(cors({origin:["http://localhost:5173"]}))
+
+// const data = [
+//     {
+//         id: "2ee2a6aa-9675",
+//         title: "samsung galaxy s26",
+//         category: "mobiles",
+//         brand: "samsung"
+//     },
+//     {
+//         id:"ff3adc50-e9ef",
+//         title: "Lenovo yog book",
+//         category: "laptops",
+//         brand: "Lenovo"
+//     }
+// ];
+
+// app.get("/", (req, res) => {
+//     res.json({ message: "success" });
+// });
+
+// app.get("/products", (req, res) => {
+//     res.status(200).json({
+//         message: "products data fetched successfully",
+//         productsData: data
+//     });
+// });
+
+// app.post("/products", (req, res) => {
+//     console.log(req.body);
+//     data.push({
+//   id: Date.now().toString(),
+//   title: req.body.title,
+//   category: req.body.category,
+//   brand: req.body.brand
+// });
+//     res.status(201).json({ message: "new product added successfully" });
+// });
+
+// const PORT = process.env.PORT || 3000;
+
+// app.listen(PORT, () => {
+//     console.log(`server started on port ${PORT}`);
+// });
+
+
 const express = require("express");
 const app = express();
+const cors = require("cors")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({origin:["http://localhost:5173"]}))
 
 const data = [
     {
