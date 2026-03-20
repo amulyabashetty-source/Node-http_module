@@ -208,10 +208,11 @@ app.get("/products", (req, res) => {
 app.post("/products", (req, res) => {
     console.log(req.body);
     data.push({
-        title: req.body.title,
-        category: req.body.category,
-        brand: req.body.brand
-    });
+  id: Date.now().toString(),
+  title: req.body.title,
+  category: req.body.category,
+  brand: req.body.brand
+});
     res.status(201).json({ message: "new product added successfully" });
 });
 
