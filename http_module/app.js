@@ -122,14 +122,62 @@
 
 
 
+// const express = require("express");
+// const app = express();
+
+
+// // middleware to get data
+// app.use(express.json())
+// app.use(express.urlencoded(true))
+
+
+// const data = [
+//     {
+//         id: "2ee2a6aa-9675",
+//         title: "samsung galaxy s26",
+//         category: "mobiles",
+//         brand: "samsung"
+//     },
+//     {
+//         id:"ff3adc50-e9ef",
+//         title: "Lenovo yog book",
+//         category: "laptops",
+//         brand: "Lenovo"
+//     }
+// ];
+
+// // default route or / route
+// app.get("/",defaultRoute);
+// function defaultRoute(req,res){
+//     res.json({message:"success"});
+// }
+
+// app.get("/products", getProducts);
+// function getProducts(req,res){
+//     res
+//     .status(200)
+//     .json({message:"products data fetched successfully", productsData: data});
+// }
+
+// app.post("/products",addProduct)
+
+// function addProduct(req,res){
+//     console.log(req.body)
+//     data.push({title:req.body.title, category:req.body.category,brand:req.body.brand})
+//     res.status(201).json({message:"new product added successfully"})
+// }
+
+// app.listen(3000, ()=>{
+//     console.log("server started on port 3000")
+// })
+
+
+
 const express = require("express");
 const app = express();
 
-
-// middleware to get data
-app.use(express.json())
-app.use(express.urlencoded(true))
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const data = [
     {
@@ -146,27 +194,29 @@ const data = [
     }
 ];
 
-// default route or / route
-app.get("/",defaultRoute);
-function defaultRoute(req,res){
-    res.json({message:"success"});
-}
+app.get("/", (req, res) => {
+    res.json({ message: "success" });
+});
 
-app.get("/products", getProducts);
-function getProducts(req,res){
-    res
-    .status(200)
-    .json({message:"products data fetched successfully", productsData: data});
-}
+app.get("/products", (req, res) => {
+    res.status(200).json({
+        message: "products data fetched successfully",
+        productsData: data
+    });
+});
 
-app.post("/products",addProduct)
+app.post("/products", (req, res) => {
+    console.log(req.body);
+    data.push({
+        title: req.body.title,
+        category: req.body.category,
+        brand: req.body.brand
+    });
+    res.status(201).json({ message: "new product added successfully" });
+});
 
-function addProduct(req,res){
-    console.log(req.body)
-    data.push({title:req.body.title, category:req.body.category,brand:req.body.brand})
-    res.status(201).json({message:"new product added successfully"})
-}
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, ()=>{
-    console.log("server started on port 3000")
-})
+app.listen(PORT, () => {
+    console.log(`server started on port ${PORT}`);
+});
